@@ -6,7 +6,7 @@ int main(int argc, char **argv){
 	char *line = NULL, *line_copy = NULL, *token;
 	const char *delim = " \n";
 	size_t n = 0;
-	size_t n_char;
+	int n_char;
 	int num_token;
 
 // cast void on the arguments of the main
