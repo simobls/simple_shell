@@ -3,7 +3,7 @@
 int main(int argc, char **argv){
 // declaration of variables
 	char *prompt = "(MyShell) $ ";
-	char *line = NULL, *line_copy = NULL, token;
+	char *line = NULL, *line_copy = NULL, *token;
 	const char *delim = " \n";
 	size_t n = 0;
 	ssize_t n_char;
@@ -13,7 +13,7 @@ int main(int argc, char **argv){
 	(void)argc, (void)argv;
 
 // infinite loop
-	while (1)
+	while (true)
 	{
 		printf("%s", prompt);
 	// use ctrl-d to send an EOF - returns -1
@@ -67,8 +67,7 @@ int main(int argc, char **argv){
 	// free allocated memory
 		free(argv);
 		free(line_copy);
-		free(line);
 	}
-		
+	free(line);
 	return (0);
 }
