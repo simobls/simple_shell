@@ -2,37 +2,26 @@
 
 int main(int argc, char **argv)
 {
-/* declaration of variables */
-	char *prompt = "(MyShell) $ ";
+	char *prompt = "(MyShell) $ "; /* declaration of variables */
 	char *line;
 	size_t n = 0;
 	int n_char;
 	const char *delim = " \n";
+	(void)argc, (void)argv; /* cast void on arguments */
 
-/* cast void on arguments */
-	(void)argc, (void)argv;
+	while (true) { /* infinite loop */
+		printf("%s", prompt); /* print the prompt */
+		n_char = getline(&line, &n, stdin); /* use ctrl-d to send an EOF */
 
-/* infinite loop */
-	while (true)
-	{
-	/* print the prompt */
-		printf("%s", prompt);
-	/* use ctrl-d to send an EOF - returns -1 */
-		n_char = getline(&line, &n, stdin);
-
-	/* condition to exit MyShell - break the infinite loop */
-		if (n_char == -1)
-		{
+		if (n_char == -1) { /* condition to exit MyShell - break the infinite loop */
 			printf("Exit MyShell ...\n");
 			return (-1);
 		}
 		printf("command : %s", line);
 
-	/* make a copy of the command after allocating the memory */
-		char *line_copy = malloc(sizeof(char) * n_char);
+		char *line_copy = malloc(sizeof(char) * n_char); /* make a copy of the command */
 
-		if (line_copy == NULL)
-		{
+		if (line_copy == NULL) {
 			perror("tsh : memory allocation error");
 			return (-1);
 		}
@@ -42,41 +31,25 @@ int main(int argc, char **argv)
 	/* parse - tokenize - the command we copied */
 		char *token = strtok(line_copy, delim);
 
-		/* calculate number of tokens */
-		int num_tokens = 0;
+		int num_tokens = NumberOfTokens(token, delim); /* calculate number of tokens */
 
-		while (token != NULL)
-		{
-			num_tokens++;
-			token = strtok(NULL, delim);
-		}
 		printf("number of tokens : %d\n", num_tokens);
 
-		/* storing the tokens */
-		char **argv = (char **)malloc(num_tokens * sizeof(char *));
+		char **argv = (char **)malloc(num_tokens * sizeof(char *)); /* storing the tokens */
+
 		line_copy = strdup(line);
 		token = strtok(line_copy, delim);
 
-		int i = 0;
-
-		while (token != NULL)
-		{
-			argv[i] = strdup(token); /* Copy each token to the array */
-			token = strtok(NULL, delim);
-			i++;
-		}
-		/* print the tokens */
-		for (i = 0; i < num_tokens; i++)
+		CopyTokens(token, delim, argv);
+		for (int i = 0; i < num_tokens; i++) /* print the tokens */
 			printf("token %d : %s\n", i, argv[i]);
 
-		/* free memory for the command copy and the tokens we made */
-		for (i = 0; i < num_tokens; i++)
+		for (int i = 0; i < num_tokens; i++) /* free memory for the command copy and the tokens we made */
 			free(argv[i]);
 
 		free(argv);
 		free(line_copy);
 	}
-	/* free allocated memory for the command */
-	free(line);
+	free(line); /* free allocated memory for the command */
 	return (0);
 }
