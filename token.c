@@ -11,8 +11,10 @@ int NumberOfTokens(char *token, const char* delim){
 	return (num_tokens);
 }
 
-void CopyTokens(char *token, const char* delim, char **argv){
+void CopyTokens(char *line_copy, const char* delim, char **argv){
 	int i = 0;
+		
+		char *token = strtok(line_copy, delim);
 
 		while (token != NULL)
 		{

@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 			printf("Exit MyShell ...\n");
 			return (-1);
 		}
-		printf("command : %s", line);
+		printf("command : %s", line); // can be removed -- maybe
 		char *line_copy = malloc(sizeof(char) * n_char);
 
 		if (line_copy == NULL)
@@ -27,23 +27,21 @@ int main(int argc, char **argv)
 			return (-1);
 		}
 		strcpy(line_copy, line);
-		printf("copy of the command : %s\n", line_copy);
+		printf("copy of the command : %s\n", line_copy); //can be removed
 
 	/* parse - tokenize - the command we copied */
 		char *token = strtok(line_copy, delim);
 		int num_tokens = NumberOfTokens(token, delim); /*calculate number of tokens*/
 
-		printf("number of tokens : %d\n", num_tokens);
+		printf("number of tokens : %d\n", num_tokens); //can be removed
 		char **argv = (char **)malloc(num_tokens * sizeof(char *));
 
 		line_copy = strdup(line);
-		token = strtok(line_copy, delim);
+		CopyTokens(line_copy, delim, argv);
+		for (int i = 0; i < num_tokens; i++) /* print the tokens */ //can be removed
+			printf("token %d : %s\n", i+1, argv[i]);
 
-		CopyTokens(token, delim, argv);
-		for (int i = 0; i < num_tokens; i++) /* print the tokens */
-			printf("token %d : %s\n", i, argv[i]);
-
-		for (int i = 0; i < num_tokens; i++)
+		for (int i = 0; i < num_tokens; i++) // free agrv & line_copy
 			free(argv[i]);
 		free(argv);
 		free(line_copy);
