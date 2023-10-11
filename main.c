@@ -30,21 +30,12 @@ int main(int argc, char **argv)
 		printf("copy of the command : %s\n", line_copy); //can be removed
 
 	/* parse - tokenize - the command we copied */
-		char *token = strtok(line_copy, delim);
-		int num_tokens = NumberOfTokens(token, delim); /*calculate number of tokens*/
+		int num_tokens = CopyTokens(line_copy, delim, argv); /*calculate number of tokens*/
 
 		printf("number of tokens : %d\n", num_tokens); //can be removed
-		char **argv = (char **)malloc(num_tokens * sizeof(char *));
 
-		line_copy = strdup(line);
-		CopyTokens(line_copy, delim, argv);
 		for (int i = 0; i < num_tokens; i++) /* print the tokens */ //can be removed
 			printf("token %d : %s\n", i+1, argv[i]);
-
-		for (int i = 0; i < num_tokens; i++) // free agrv & line_copy
-			free(argv[i]);
-		free(argv);
-		free(line_copy);
 	}
 	free(line); /* free allocated memory for the command */
 	return (0);
