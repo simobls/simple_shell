@@ -9,19 +9,20 @@ int main(int argc, char **argv)
 	const char *delim = " \n";
 	(void)argc, (void)argv; /* cast void on arguments */
 
-	while (true) { /* infinite loop */
+	while (true) /* infinite loop */
+	{
 		printf("%s", prompt); /* print the prompt */
 		n_char = getline(&line, &n, stdin); /* use ctrl-d to send an EOF */
-
-		if (n_char == -1) { /* condition to exit MyShell - break the infinite loop */
+		if (n_char == -1) /* condition to exit MyShell - break the infinite loop */
+		{
 			printf("Exit MyShell ...\n");
 			return (-1);
 		}
 		printf("command : %s", line);
+		char *line_copy = malloc(sizeof(char) * n_char);
 
-		char *line_copy = malloc(sizeof(char) * n_char); /* make a copy of the command */
-
-		if (line_copy == NULL) {
+		if (line_copy == NULL)
+		{
 			perror("tsh : memory allocation error");
 			return (-1);
 		}
@@ -30,12 +31,10 @@ int main(int argc, char **argv)
 
 	/* parse - tokenize - the command we copied */
 		char *token = strtok(line_copy, delim);
-
-		int num_tokens = NumberOfTokens(token, delim); /* calculate number of tokens */
+		int num_tokens = NumberOfTokens(token, delim); /*calculate number of tokens*/
 
 		printf("number of tokens : %d\n", num_tokens);
-
-		char **argv = (char **)malloc(num_tokens * sizeof(char *)); /* storing the tokens */
+		char **argv = (char **)malloc(num_tokens * sizeof(char *));
 
 		line_copy = strdup(line);
 		token = strtok(line_copy, delim);
@@ -44,9 +43,8 @@ int main(int argc, char **argv)
 		for (int i = 0; i < num_tokens; i++) /* print the tokens */
 			printf("token %d : %s\n", i, argv[i]);
 
-		for (int i = 0; i < num_tokens; i++) /* free memory for the command copy and the tokens we made */
+		for (int i = 0; i < num_tokens; i++)
 			free(argv[i]);
-
 		free(argv);
 		free(line_copy);
 	}
