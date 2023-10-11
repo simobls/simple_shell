@@ -43,7 +43,7 @@ int main(int argc, char **argv)
 				// code
 			} else
 			{
-				// execute command
+				execute_command(argv);
 			}
 		}
 		
