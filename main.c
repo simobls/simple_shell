@@ -32,10 +32,25 @@ int main(int argc, char **argv)
 	/* parse - tokenize - the command we copied */
 		int num_tokens = CopyTokens(line_copy, delim, argv); /*calculate number of tokens*/
 
-		printf("number of tokens : %d\n", num_tokens); //can be removed
+		if (num_tokens > 0)
+		{
+			if (strcmp(argv[0], "exit") == 0) {
+                // Handle the 'exit' command
+                exit(0);
+			} else if (strcmp(argv[0], "cd") == 0)
+			{
+				// Handle the 'cd' command
+				// code
+			} else
+			{
+				// execute command
+			}
+		}
+		
+		//printf("number of tokens : %d\n", num_tokens); //can be removed
 
-		for (int i = 0; i < num_tokens; i++) /* print the tokens */ //can be removed
-			printf("token %d : %s\n", i+1, argv[i]);
+		//for (int i = 0; i < num_tokens; i++) /* print the tokens */ //can be removed
+			//printf("token %d : %s\n", i+1, argv[i]);
 	}
 	free(line); /* free allocated memory for the command */
 	return (0);
