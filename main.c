@@ -46,7 +46,6 @@ int main(int argc, char **argv)
 				execute_command(argv);
 			}
 		}
-		
 		//printf("number of tokens : %d\n", num_tokens); //can be removed
 
 		//for (int i = 0; i < num_tokens; i++) /* print the tokens */ //can be removed
