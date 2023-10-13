@@ -2,8 +2,7 @@
 
 int main(int argc, char **argv)
 {
-	char *prompt = "(MyShell) $ "; /* declaration of variables */
-	char *line;
+	char *prompt = "(MyShell) $ ", *line; /* declaration of variables */
 	size_t n = 0;
 	int n_char;
 	const char *delim = " \n";
