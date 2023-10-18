@@ -91,4 +91,3 @@ void print_env(char **command, int *status)
 	free2Darray(command);
 	(*status) = 0;
 }
-
