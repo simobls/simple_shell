@@ -29,7 +29,7 @@ return (1);
  *
  * Return: Integer.
  */
-int lsh_help()
+int lsh_help(void)
 {
 	printf("shell - a simple shell program\n");
 	printf("Commands:\n");
@@ -47,7 +47,7 @@ int lsh_help()
  *
  * Return: Integer.
  */
-int lsh_exit()
+int lsh_exit(void)
 {
 	return (0);
 }
