@@ -25,7 +25,6 @@ return (1);
  * lsh_help - Displays a help message for the shell program. Takes an array of
  * strings as input, where the first string is the command name.
  *
- * @args: Array of strings.
  *
  * Return: Integer.
  */
@@ -43,7 +42,6 @@ int lsh_help(void)
  * lsh_exit - Exits the shell program. Takes an array of strings as input,
  * where the first string is the command name.
  *
- * @args: Array of strings.
  *
  * Return: Integer.
  */
