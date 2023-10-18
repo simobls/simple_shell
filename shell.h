@@ -7,16 +7,16 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-void init();
+void init(void);
 
-char *read_input();
+char *read_input(void);
 char **parse_input(char *input);
 
 void execute(char **args);
 
 int lsh_cd(char **args);
-int lsh_help();
-int lsh_exit();
+int lsh_help(void);
+int lsh_exit(void);
 
 #endif
 
